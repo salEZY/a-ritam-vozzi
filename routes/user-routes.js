@@ -8,6 +8,7 @@ const {
   editAccount,
   deleteAccount,
 } = require("../controllers/index");
+const { authCheck } = require("../util/auth");
 
 const router = express.Router();
 
@@ -26,6 +27,8 @@ router.post(
   body("password").not().isEmpty().withMessage("Password is required."),
   login
 );
+
+router.use(authCheck);
 
 router.get("/", allUsers);
 
