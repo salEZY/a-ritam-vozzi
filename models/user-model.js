@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema(
     phone: {
       type: Number,
     },
+    company: {
+      type: mongoose.Types.ObjectId,
+      ref: "Company",
+    },
   },
   { timestamps: true }
 );
@@ -61,5 +65,11 @@ userSchema.methods.generateToken = function () {
 
   return token;
 };
+
+userSchema.pre(/^find/, function (next) {
+  this.populate("company", "name address PIB MB");
+
+  next();
+});
 
 module.exports = User = mongoose.model("User", userSchema);
