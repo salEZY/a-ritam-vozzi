@@ -1,5 +1,5 @@
 const express = require("express");
-const { body } = require("express-validator");
+const { body, param } = require("express-validator");
 const {
   register,
   login,
@@ -7,7 +7,7 @@ const {
   oneUser,
   editAccount,
   deleteAccount,
-} = require("../controllers/index");
+} = require("../controllers/user/index");
 const { authCheck } = require("../util/auth");
 
 const router = express.Router();
@@ -32,6 +32,16 @@ router.use(authCheck);
 
 router.get("/", allUsers);
 
-router.route("/:id").get(oneUser).patch(editAccount).delete(deleteAccount);
+router
+  .route("/:id")
+  .get(param("id").not().isEmpty().withMessage("User id is required"), oneUser)
+  .patch(
+    param("id").not().isEmpty().withMessage("User id is required"),
+    editAccount
+  )
+  .delete(
+    param("id").not().isEmpty().withMessage("User id is required"),
+    deleteAccount
+  );
 
 module.exports = router;

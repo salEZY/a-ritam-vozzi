@@ -138,6 +138,31 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Create company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/company/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
