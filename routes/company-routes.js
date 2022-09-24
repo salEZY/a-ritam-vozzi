@@ -1,6 +1,10 @@
 const express = require("express");
-const { body } = require("express-validator");
-const { createCompany, getCompanies } = require("../controllers/company/index");
+const { body, param } = require("express-validator");
+const {
+  createCompany,
+  getCompanies,
+  getCompany,
+} = require("../controllers/company/index");
 
 const router = express.Router();
 
@@ -13,6 +17,13 @@ router
     body("PIB").not().isEmpty().withMessage("PIB is required."),
     body("MB").not().isEmpty().withMessage("MB is required."),
     createCompany
+  );
+
+router
+  .route("/:id")
+  .get(
+    param("id").not().isEmpty().withMessage("Company id is required"),
+    getCompany
   );
 
 module.exports = router;
