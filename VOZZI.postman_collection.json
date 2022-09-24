@@ -138,6 +138,102 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "Create company",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/company/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"company",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get companies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get company",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit company",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"VOZZI D.O.O\",\n    \"PIB\": 21313131313131\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/company/632eeed1c7e3517230970ac5",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"company",
+								"632eeed1c7e3517230970ac5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete company",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/company/632f0f4821e7d29ce96e50f7",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"company",
+								"632f0f4821e7d29ce96e50f7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
