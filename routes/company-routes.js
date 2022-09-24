@@ -1,11 +1,12 @@
 const express = require("express");
 const { body } = require("express-validator");
-const { createCompany } = require("../controllers/company/index");
+const { createCompany, getCompanies } = require("../controllers/company/index");
 
 const router = express.Router();
 
 router
   .route("/")
+  .get(getCompanies)
   .post(
     body("name").not().isEmpty().withMessage("Name is required."),
     body("address").not().isEmpty().withMessage("Address is required."),

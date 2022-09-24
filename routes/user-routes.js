@@ -3,8 +3,8 @@ const { body, param } = require("express-validator");
 const {
   register,
   login,
-  allUsers,
-  oneUser,
+  getUsers,
+  getUser,
   editAccount,
   deleteAccount,
 } = require("../controllers/user/index");
@@ -30,11 +30,11 @@ router.post(
 
 router.use(authCheck);
 
-router.get("/", allUsers);
+router.get("/", getUsers);
 
 router
   .route("/:id")
-  .get(param("id").not().isEmpty().withMessage("User id is required"), oneUser)
+  .get(param("id").not().isEmpty().withMessage("User id is required"), getUser)
   .patch(
     param("id").not().isEmpty().withMessage("User id is required"),
     editAccount
