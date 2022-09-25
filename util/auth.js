@@ -16,8 +16,8 @@ const authCheck = async (req, res, next) => {
   }
 
   try {
-    const decodedToken = await jwt.verify(token, process.env.JWT);
-    console.log(decodedToken);
+    const decodedToken = jwt.verify(token, process.env.JWT);
+
     if (!decodedToken || decodedToken === null || decodedToken === undefined) {
       return res.status(401).json({ message: "Forbidden access." });
     }
