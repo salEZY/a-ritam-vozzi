@@ -4,9 +4,10 @@ const {
   createVehicle,
   getVehicles,
   getVehicle,
+  editVehicle,
+  deleteVehicle,
 } = require("../controllers/vehicle/index");
 const { authCheck } = require("../util/auth");
-const { route } = require("./user-routes");
 
 const router = express.Router();
 
@@ -28,6 +29,14 @@ router
   .get(
     param("id").not().isEmpty().withMessage("Vehicle id is required"),
     getVehicle
+  )
+  .patch(
+    param("id").not().isEmpty().withMessage("Vehicle id is required"),
+    editVehicle
+  )
+  .delete(
+    param("id").not().isEmpty().withMessage("Vehicle id is required"),
+    deleteVehicle
   );
 
 module.exports = router;

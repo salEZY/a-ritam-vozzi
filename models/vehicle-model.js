@@ -39,4 +39,10 @@ vehicleSchema.methods.toJSON = function () {
   return vehicle;
 };
 
+vehicleSchema.pre(/^find/, function (next) {
+  this.populate("company", "name address PIB MB");
+
+  next();
+});
+
 module.exports = Vehicle = mongoose.model("Vehicle", vehicleSchema);
