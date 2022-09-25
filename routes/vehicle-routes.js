@@ -1,7 +1,12 @@
 const express = require("express");
-const { body } = require("express-validator");
-const { createVehicle, getVehicles } = require("../controllers/vehicle/index");
+const { body, param } = require("express-validator");
+const {
+  createVehicle,
+  getVehicles,
+  getVehicle,
+} = require("../controllers/vehicle/index");
 const { authCheck } = require("../util/auth");
+const { route } = require("./user-routes");
 
 const router = express.Router();
 
@@ -16,6 +21,13 @@ router
       .withMessage("Car manufacturer is required."),
     body("model").not().isEmpty().withMessage("Car model is required."),
     createVehicle
+  );
+
+router
+  .route("/:id")
+  .get(
+    param("id").not().isEmpty().withMessage("Vehicle id is required"),
+    getVehicle
   );
 
 module.exports = router;
