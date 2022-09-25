@@ -4,7 +4,6 @@ const vehicleSchema = new mongoose.Schema(
   {
     licencePlateNumber: {
       type: String,
-      required: true,
       unique: true,
     },
     vinNumber: {
@@ -22,7 +21,12 @@ const vehicleSchema = new mongoose.Schema(
     },
     fuel: {
       type: String,
-      enum: ["petrol", "diesel", "tng", "electric"],
+      enum: ["unspecified", "petrol", "diesel", "tng", "electric"],
+      default: "unspecified",
+    },
+    company: {
+      type: mongoose.Types.ObjectId,
+      ref: "Company",
     },
   },
   { timestamps: true }
@@ -32,7 +36,7 @@ vehicleSchema.methods.toJSON = function () {
   const vehicle = this.toObject();
   delete vehicle.__v;
 
-  return company;
+  return vehicle;
 };
 
 module.exports = Vehicle = mongoose.model("Vehicle", vehicleSchema);

@@ -70,10 +70,16 @@
 					"name": "Edit account",
 					"request": {
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzJjOGY5MmMzMTg1MGNkMzU2NjQwNjMiLCJjb21wYW55Ijp7Il9pZCI6IjYzMmVlZWQxYzdlMzUxNzIzMDk3MGFjNSIsIm5hbWUiOiJWT1paSSBELk8uTyIsImFkZHJlc3MiOiJCb3JlIFByb2Rhbm92aWNhIDkiLCJQSUIiOjIxMzEzMTMxMzEzMTMxLCJNQiI6MjEzMTMxMzF9LCJpYXQiOjE2NjQxMDY5NTAsImV4cCI6MTY2NDE5MzM1MH0.NrvH63Efpdi7GLhytfBaDwW3Gcqdm2Nk_FbOYzvF9X0",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"A\"\n}",
+							"raw": "{\n    \"company\": \"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,6 +234,60 @@
 								"api",
 								"company",
 								"632f0f4821e7d29ce96e50f7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehicle",
+			"item": [
+				{
+					"name": "Create vehicle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vinNumber\": \"JMXZdw1e1dasdad\",\n    \"manufacturer\": \"Mazda\",\n    \"model\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/vehicle/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"vehicle",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get vehicles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/vehicle/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"vehicle",
+								""
 							]
 						}
 					},
