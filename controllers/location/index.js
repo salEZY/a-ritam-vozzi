@@ -1,3 +1,4 @@
 const moveDriver = require("./moveDriver");
+const getDriversLastLocation = require("./getDriversLastLocation");
 
-module.exports = { moveDriver };
+module.exports = { moveDriver, getDriversLastLocation };
