@@ -39,12 +39,23 @@
 				},
 				{
 					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"salezy@test.com\",\n    \"password\": \"pass1234\"\n}",
+							"raw": "{\n    \"email\": \"delete@test.com\",\n    \"password\": \"pass1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,7 +63,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8090/api/user/register",
+							"raw": "localhost:8090/api/user/login",
 							"host": [
 								"localhost"
 							],
@@ -60,7 +71,7 @@
 							"path": [
 								"api",
 								"user",
-								"register"
+								"login"
 							]
 						}
 					},
@@ -191,6 +202,31 @@
 					"response": []
 				},
 				{
+					"name": "Delete company",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/company/632f0f4821e7d29ce96e50f7",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"company",
+								"632f0f4821e7d29ce96e50f7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Vehicle",
+			"item": [
+				{
 					"name": "Edit company",
 					"request": {
 						"method": "PATCH",
@@ -220,38 +256,19 @@
 					"response": []
 				},
 				{
-					"name": "Delete company",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:8090/api/company/632f0f4821e7d29ce96e50f7",
-							"host": [
-								"localhost"
-							],
-							"port": "8090",
-							"path": [
-								"api",
-								"company",
-								"632f0f4821e7d29ce96e50f7"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Vehicle",
-			"item": [
-				{
 					"name": "Create vehicle",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzJkYmRjMWU0MWUzMzRiZWQxNTViM2MiLCJpYXQiOjE2NjQyNTkxMDQsImV4cCI6MTY2NDM0NTUwNH0.2hzeFglpUH-pKgeCCuyV1bkD8bnTfCcFwDv9I2oltQQ",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"vinNumber\": \"JMXZdw1e1dasdad\",\n    \"manufacturer\": \"Mazda\",\n    \"model\": \"2\"\n}",
+							"raw": "{\n    \"vinNumber\": \"12313131312313\",\n    \"manufacturer\": \"Mazda\",\n    \"model\": \"2\",\n    \"licencePlateNumber\": \"sadadadad11213131\",\n    \"company\": \"6332945ea0e1679ce53b478b\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -287,6 +304,141 @@
 							"path": [
 								"api",
 								"vehicle",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get vehicle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/vehicle/63304c16d69c8e45514a365b",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"vehicle",
+								"63304c16d69c8e45514a365b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit vehicle",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"company\": \"632eeed1c7e3517230970ac5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/vehicle/63304c16d69c8e45514a365b",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"vehicle",
+								"63304c16d69c8e45514a365b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete vehicle",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8090/api/vehicle/633099d1df2db5f415598ee4",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"vehicle",
+								"633099d1df2db5f415598ee4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Location",
+			"item": [
+				{
+					"name": "Move driver",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzJkYmRjMWU0MWUzMzRiZWQxNTViM2MiLCJjb21wYW55Ijp7Il9pZCI6IjYzMzI5NDVlYTBlMTY3OWNlNTNiNDc4YiIsIm5hbWUiOiJWT1paSSBkZWxldGUiLCJhZGRyZXNzIjoiQm9yZSBQcm9kYW5vdmljYSA5IiwiUElCIjoxMjMxMzEzLCJNQiI6MjEzMTMxMzExMTIxfSwiaWF0IjoxNjY0MjU5MzUyLCJleHAiOjE2NjQzNDU3NTJ9.0c0kcOMl-Aag5cKEeqNdbq-c6npj9JYTcD25E0QBH_M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"vehicle\": \"633294a1a0e1679ce53b478e\",\n    \"location\": {\n        \"type\": \"Point\",\n        \"coordinates\": [19.02 , 15.04]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8090/api/location/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"location",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get drivers last location",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MzJjOGY5MmMzMTg1MGNkMzU2NjQwNjMiLCJjb21wYW55Ijp7Il9pZCI6IjYzMmVlZWQxYzdlMzUxNzIzMDk3MGFjNSIsIm5hbWUiOiJWT1paSSBELk8uTyIsImFkZHJlc3MiOiJCb3JlIFByb2Rhbm92aWNhIDkiLCJQSUIiOjIxMzEzMTMxMzEzMTMxLCJNQiI6MjEzMTMxMzF9LCJpYXQiOjE2NjQyNTY5MDIsImV4cCI6MTY2NDM0MzMwMn0.zcv9TFyKkEaqQyxBRpMpiAaVP1nmAq4QO8KU-QZlalw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8090/api/location/",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"api",
+								"location",
 								""
 							]
 						}
