@@ -10,11 +10,13 @@ module.exports = async (req, res, next) => {
     return res.status(500).json(err.message);
   }
 
+  // Remove company from all users
   await User.updateMany(
     { company: req.params.id },
     { $unset: { company: null } }
   );
 
+  // Remove company from all vehicles
   await Vehicle.updateMany(
     { company: req.params.id },
     { $unset: { company: null } }
