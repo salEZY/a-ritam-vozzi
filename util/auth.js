@@ -3,8 +3,8 @@ const User = require("../models/user-model");
 
 const authCheck = async (req, res, next) => {
   if (
-    !req.headers?.authorization ||
-    !req.headers?.authorization.startsWith("Bearer")
+    !req.headers.authorization ||
+    !req.headers.authorization.startsWith("Bearer")
   ) {
     return res.status(401).json({ message: "Forbidden access." });
   }

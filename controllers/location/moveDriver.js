@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
   }
   const vehicle = await Vehicle.findById(req.body.vehicle);
 
-  if (req.user?.company?._id.toString() !== vehicle.company._id.toString())
+  if (req.user.company._id.toString() !== vehicle.company._id.toString())
     return res
       .status(403)
       .json({ message: "You must use your company vehicle." });
