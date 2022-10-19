@@ -66,32 +66,43 @@
     <form id="form" action="">
         <input id="input" autocomplete="off" /><button>Send</button>
     </form>
-
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-        const ws = new WebSocket('ws://localhost:5070/sockets')
-
+        //const ws = new WebSocket('ws://localhost:5070/sockets')
+        const socket = io()
         var form = document.getElementById('form');
         var input = document.getElementById('input');
         var messages = document.querySelector("#messages")
 
+        //let userId = '632c8f92c31850cd35664063'
+
         form.addEventListener('submit', function (e) {
             e.preventDefault();
             if (input.value) {
-                ws.send(input.value);
+                socket.emit('driver-update', input.value);
                 input.value = '';
             }
         });
-        ws.onopen = () => {
-        console.log('Connection opened!');
-      }
-
-        ws.addEventListener('message', (data) => {
-            let location = JSON.parse(data.data)
+      
+        socket.on('driver-update', function (data) {
+            console.log(data)
 
             const item = document.createElement('li')
-            item.textContent = `${location.location.coordinates} - ${location.updatedAt.replace("T", " ").replace("Z","")}`
+            item.textContent = `${data.location.coordinates} - ${data.updatedAt}`
             messages.appendChild(item)
+
         })
+        // ws.addEventListener('message', (data) => {
+        //     let response = JSON.parse(data.data)
+
+        //     // if(response.userId === userId) {
+              
+        //     // }
+        //     const item = document.createElement('li')
+        //     item.textContent = `${response.location.location.coordinates} - ${response.location.updatedAt.replace("T", " ").replace("Z","")}`
+        //     messages.appendChild(item)
+            
+        // })
         
         
     </script>

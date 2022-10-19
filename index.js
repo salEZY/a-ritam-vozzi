@@ -3,6 +3,7 @@ const express = require("express");
 const db = require("./util/db");
 const routes = require("./routes/index");
 const middlewares = require("./util/middlewares");
+const Location = require("./models/location-model");
 const websocket = require("./util/websocket");
 const http = require("http");
 
@@ -28,3 +29,7 @@ server.listen(PORT, () => {
 db();
 
 routes(app);
+
+process.on("RangeError", (err) => {
+  console.log(err.message);
+});
